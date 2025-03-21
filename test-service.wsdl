@@ -1,0 +1,46 @@
+<definitions name="TestService"
+    targetNamespace="http://example.com/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:tns="http://example.com/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://example.com/" schemaLocation="http://localhost:8000/test-schema.xsd"/>
+        </xsd:schema>
+    </types>
+
+    <message name="GetNumbersRequestMessage">
+        <part name="parameters" element="tns:GetNumbersRequest"/>
+    </message>
+    <message name="GetNumbersResponseMessage">
+        <part name="parameters" element="tns:GetNumbersResponse"/>
+    </message>
+
+    <portType name="TestServicePortType">
+        <operation name="GetNumbers">
+            <input message="tns:GetNumbersRequestMessage"/>
+            <output message="tns:GetNumbersResponseMessage"/>
+        </operation>
+    </portType>
+
+    <binding name="TestServiceBinding" type="tns:TestServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="GetNumbers">
+            <soap:operation soapAction="GetNumbers"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="TestService">
+        <port name="TestServicePort" binding="tns:TestServiceBinding">
+            <soap:address location="http://localhost:8000/wsdl"/>
+        </port>
+    </service>
+</definitions>

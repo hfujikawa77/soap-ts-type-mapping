@@ -1,0 +1,18 @@
+<schema targetNamespace="http://example.com/" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <element name="GetNumbersRequest">
+        <complexType>
+            <sequence>
+                <element name="longValue" type="xsd:long"/>
+                <element name="intValue" type="xsd:int"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="GetNumbersResponse">
+        <complexType>
+            <sequence>
+                <element name="longValue" type="xsd:long"/>
+                <element name="intValue" type="xsd:int"/>
+            </sequence>
+        </complexType>
+    </element>
+</schema>
